@@ -8,12 +8,12 @@ const routes = require('./routes')
 const app = express()
 const PORT = 3000
 
-app.use(routes)
+
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 
-
+app.use(routes)
 
 app.set('view engine', 'hbs')
 app.listen(PORT, () => {

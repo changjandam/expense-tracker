@@ -1,0 +1,26 @@
+<div class="container d-flex justify-content-center">
+  <form class="col-4" method="POST" action="/records/">
+    <p class="fs-1 text-center m-2">請輸入你的支出</p>
+    <p class="fs-6 text-center m-2">*必填欄位</p>
+    <div class="mb-3">
+      <label for="name" class="form-label">*名稱：</label>
+      <input type="text" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="date" class="form-label">*日期：</label>
+      <input type="date" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="category" class="form-label">*分類：</label>
+      <select class="form-select">
+        <option selected></option>
+        <option value="高興就好"></option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="amount" class="form-label">*金額：</label>
+      <input type="number" class="form-control" min="0"  required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
