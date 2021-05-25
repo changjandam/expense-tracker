@@ -1,0 +1,16 @@
+#totalAmountNumber {
+  color: rgb(223, 126, 86);
+  font-size:75px;
+}
+
+#record > #recordRow:nth-child(odd) {
+  background-color:rgb(246, 246, 246);
+}
+
+p {
+  margin: 0px;
+}
+
+i {
+  color: rgb(166, 219, 230);
+}

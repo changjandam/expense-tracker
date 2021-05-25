@@ -1,1 +1,44 @@
-hello world
+<nav class="navbar navbar-light bg-light px-2">
+  <span class="navbar-brand mb-0 h1">家庭記事本</span>
+</nav>
+<div class="container">
+  <div class="d-flex justify-content-center m-3" id="category">
+    <div class="dropdown w-25">
+      <button class="btn btn-secondary w-100 dropdown-toggle" type="button" id="dropdownMenuButton"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        類別
+      </button>
+      <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center m-3" id="totalAmount">
+    <div class="">
+      <p>總金額：</p>
+    </div>
+    <div class="">
+      <p id="totalAmountNumber">26250</p>
+    </div>
+  </div>
+  <div class=" d-flex flex-column justify-content-center" id="records">
+    <div class="d-flex  align-items-center justify-content-end w-100" id="record">
+      <div class="d-flex align-items-center col-6" id="recordRow">
+        <i class="fas fa-utensils fa-3x mx-2"></i>
+        <div>
+          <p class="fs-2">午餐</p>
+          <p>2019/4/23</p>
+        </div>
+        <p class="fs-4 col text-end px-3">100</p>
+      </div>
+      <div class="d-flex col-3">
+        <button class="btn btn-primary mx-1">修改</button>
+        <button class="btn btn-danger mx-1">刪除</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center" id="makeNew">
+  <a class="btn btn-warning m-3" href="">新增支出</a>
+</div>
+</div>
