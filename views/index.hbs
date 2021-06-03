@@ -2,37 +2,42 @@
   <div class="d-flex justify-content-center m-3" id="category">
     <div class="dropdown w-25">
       <button class="btn btn-secondary w-100 dropdown-toggle" type="button" id="dropdownMenuButton"
-        data-bs-toggle="dropdown" aria-expanded="false">
-        類別
-      </button>
+        data-bs-toggle="dropdown" aria-expanded="false">類別</button>
       <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-        <li><a class="dropdown-item" href="#">Action</a></li>
+        {{#each categories}}
+        <li><a class="dropdown-item" href="#">{{this.name}}</a></li>
+        {{/each}}
       </ul>
     </div>
   </div>
   <div class="d-flex justify-content-center m-3" id="totalAmount">
-    <div class="">
-      <p>總金額：</p>
+    <div>      
+      <p>總金額：</p>   
     </div>
-    <div class="">
-      <p id="totalAmountNumber">26250</p>
+    <div>
+      {{#with sum}}
+      <p id="totalAmountNumber">{{this}}</p>
+      {{/with}}
     </div>
   </div>
   <div class=" d-flex flex-column justify-content-center" id="records">
+    {{#each records}}
     <div class="d-flex  align-items-center justify-content-end w-100" id="record">
       <div class="d-flex align-items-center col-6" id="recordRow">
-        <i class="fas fa-utensils fa-3x mx-2"></i>
+        <i class="fas {{this.class}} fa-3x mx-2 col-1 d-flex justify-content-center"></i>
         <div>
-          <p class="fs-2">午餐</p>
-          <p>2019/4/23</p>
+          <p class="fs-2">{{this.name}}</p>
+          <p>{{dateConvert this.date}}</p>
         </div>
-        <p class="fs-4 col text-end px-3">100</p>
+        <p class="fs-4 col text-end px-3">{{this.amount}}</p>
       </div>
       <div class="d-flex col-3">
         <a class="btn btn-primary mx-1" href="">修改</a>
         <button class="btn btn-danger mx-1">刪除</button>
       </div>
     </div>
+    {{/each}}
+
   </div>
 </div>
 <div class="d-flex justify-content-center" id="makeNew">

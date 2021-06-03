@@ -5,12 +5,22 @@ const Record = require('../../models/record')
 const Category = require('../../models/category')
 
 router.get('/new', (req, res) => {
-  res.render('new')
+  Category.find()
+    .lean()
+    .then(categories => res.render('new', { categories }))
+    .catch(error => console.log(error))
 })
 
 router.post('/', (req, res) => {
-  
-  console.log("get")
+  const { name, date, category, amount } = req.body
+  Record.create({
+    name,
+    date,
+    category,
+    amount
+  })
+  .then(() => res.redirect('/'))
+  .catch(err => console.log(err))
 })
 
 

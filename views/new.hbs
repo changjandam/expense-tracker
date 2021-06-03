@@ -1,26 +1,27 @@
 <div class="container d-flex justify-content-center">
-  <form class="col-4" method="POST" action="/records/">
+  <form class="col-5" method="POST" action="/records/">
     <p class="fs-1 text-center m-2">請輸入你的支出</p>
     <p class="fs-6 text-center m-2">*必填欄位</p>
     <div class="mb-3">
-      <label for="name" class="form-label">*名稱：</label>
-      <input type="text" class="form-control" required>
+      <label class="form-label">*名稱：</label>
+      <input type="text" class="form-control"  name="name"  required>
     </div>
     <div class="mb-3">
-      <label for="date" class="form-label">*日期：</label>
-      <input type="date" class="form-control" required>
+      <label class="form-label">*日期：</label>
+      <input type="date" class="form-control" name="date"  required>
     </div>
     <div class="mb-3">
-      <label for="category" class="form-label">*分類：</label>
-      <select class="form-select">
-        <option selected></option>
-        <option value="高興就好"></option>
+      <label class="form-label">*分類：</label>
+      <select class="form-select" name="category" >
+        {{#each categories}}
+        <option value="{{this.name}}">{{this.name}}</option>
+        {{/each}}
       </select>
     </div>
     <div class="mb-3">
-      <label for="amount" class="form-label">*金額：</label>
-      <input type="number" class="form-control" min="0"  required>
+      <label class="form-label">*金額：</label>
+      <input type="number" class="form-control" min="0" name="amount" required>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary col-12 my-2">Submit</button>
   </form>
 </div>

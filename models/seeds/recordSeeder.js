@@ -1,7 +1,9 @@
 const db = require('../../config/mongoose')
 const Record = require('../record')
 const record = [
-  { name: "早餐", category: "餐飲食品", date: "2017-01-04T16:00:00.000Z", amount: 100}
+  { name: "早餐", category: "餐飲食品", date: "2017-01-04T16:00:00.000Z", amount: 100},
+  { name: "午餐", category: "餐飲食品", date: "2017-01-04T16:00:00.000Z", amount: 70 },
+  { name: "Model S", category: "家居物業", date: "2017-01-04T16:00:00.000Z", amount: 3000000 }
 ]
 
 db.once('open', async () => {
