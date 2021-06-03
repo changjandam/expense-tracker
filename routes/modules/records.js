@@ -19,9 +19,8 @@ router.post('/', (req, res) => {
     category,
     amount
   })
-  .then(() => res.redirect('/'))
-  .catch(err => console.log(err))
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
 })
-
 
 module.exports = router
