@@ -3,6 +3,7 @@ const router = express.Router()
 
 const Record = require('../../models/record')
 const Category = require('../../models/category')
+const record = require('../../models/record')
 
 router.get('/new', (req, res) => {
   Category.find()
@@ -32,6 +33,22 @@ router.get('/:id/edit', async (req, res) => {
     categories = categories.filter(items => items.name !== record.category)
     record.date = record.date.toISOString().slice(0, 10)
     return res.render('edit', { categories, record })
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+router.put('/:id', async (req, res) => {
+  const _id = req.params.id
+  const { name, date, category, amount } = req.body
+  try {
+    const record = await Record.findOne({ _id })
+    record.name = name
+    record.date = date
+    record.category = category
+    record.amount = amount
+    await record.save()
+    return res.redirect('/')
   } catch (err) {
     console.log(err)
   }
