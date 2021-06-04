@@ -72,7 +72,7 @@ router.get('/select/:method', async (req, res) => {
       sum += records[i].amount
     }
 
-    res.render('index', { categories, records, sum })
+    res.render('index', { categories, records, sum, method })
   } catch (err) {
     console.log(err)
   }
