@@ -4,8 +4,9 @@
       <button class="btn btn-secondary w-100 dropdown-toggle" type="button" id="dropdownMenuButton"
         data-bs-toggle="dropdown" aria-expanded="false">類別</button>
       <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+        <li><a class="dropdown-item" href="/">全選</a></li>
         {{#each categories}}
-        <li><a class="dropdown-item" href="#">{{this.name}}</a></li>
+        <li><a class="dropdown-item" href="/records/select/{{this.name}}">{{this.name}}</a></li>
         {{/each}}
       </ul>
     </div>

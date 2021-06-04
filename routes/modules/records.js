@@ -3,7 +3,6 @@ const router = express.Router()
 
 const Record = require('../../models/record')
 const Category = require('../../models/category')
-const record = require('../../models/record')
 
 router.get('/new', (req, res) => {
   Category.find()
@@ -60,6 +59,23 @@ router.delete('/:id', (req, res) => {
     .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
+})
+
+router.get('/select/:method', async (req, res) => {
+  const method = req.params.method
+  try {
+    const categories = await Category.find().lean()
+    const records = await Record.find({ category: method }).lean()
+    let sum = 0
+    for (let i = 0; i < records.length; i++) {
+      records[i].class = categories.find(category => category.name === records[i].category).class
+      sum += records[i].amount
+    }
+
+    res.render('index', { categories, records, sum })
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 module.exports = router
