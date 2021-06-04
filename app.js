@@ -1,6 +1,11 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const methodOverrride = require('method-override')
+const session = require('express-session')
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 const routes = require('./routes')
 
@@ -13,6 +18,12 @@ app.use(methodOverrride('_method'))
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: require('./config/hbs-helpers.js') }))
 app.set('view engine', 'hbs')
 require('./config/mongoose')
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}))
 
 app.use(routes)
 
