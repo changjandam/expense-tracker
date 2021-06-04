@@ -4,15 +4,16 @@
     <p class="fs-6 text-center m-2">*必填欄位</p>
     <div class="mb-3">
       <label class="form-label">*名稱：</label>
-      <input type="text" class="form-control" name="name" required>
+      <input type="text" class="form-control" name="name" value="{{record.name}}" required>
     </div>
     <div class="mb-3">
       <label class="form-label">*日期：</label>
-      <input type="date" class="form-control" name="date" required>
+      <input type="date" class="form-control" name="date" value="{{record.date}}" required>
     </div>
     <div class="mb-3">
       <label class="form-label">*分類：</label>
       <select class="form-select" name="category">
+        <option selected>{{record.category}}</option>
         {{#each categories}}
         <option value="{{this.name}}">{{this.name}}</option>
         {{/each}}
@@ -20,7 +21,7 @@
     </div>
     <div class="mb-3">
       <label class="form-label">*金額：</label>
-      <input type="number" class="form-control" min="0" name="amount" required>
+      <input type="number" class="form-control" min="0" name="amount" value="{{record.amount}}" required>
     </div>
     <button type="submit" class="btn btn-primary col-12 my-2">確認</button>
   </form>

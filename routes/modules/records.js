@@ -3,7 +3,6 @@ const router = express.Router()
 
 const Record = require('../../models/record')
 const Category = require('../../models/category')
-const record = require('../../models/record')
 
 router.get('/new', (req, res) => {
   Category.find()
@@ -24,8 +23,18 @@ router.post('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.get('/:id/edit', (req, res) => {
-  res.render('edit')
+router.get('/:id/edit', async (req, res) => {
+  const _id = req.params.id
+  try {
+    let categories = await Category.find().lean()
+    const record = await Record.findById({ _id }).lean()
+    console.log()
+    categories = categories.filter(items => items.name !== record.category)
+    record.date = record.date.toISOString().slice(0, 10)
+    return res.render('edit', { categories, record })
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 router.delete('/:id', (req, res) => {
