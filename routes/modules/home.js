@@ -4,9 +4,10 @@ const Record = require('../../models/record')
 const Category = require('../../models/category')
 
 router.get('/', async (req, res) => {
+  const userId = req.user._id
   try {
     const categories = await Category.find().lean()
-    const records = await Record.find().lean()
+    const records = await Record.find({ userId }).lean()
     let sum = 0
     for (let i = 0; i < records.length; i++) {
       records[i].class = categories.find(category => category.name === records[i].category).class
