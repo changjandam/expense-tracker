@@ -26,9 +26,8 @@ router.post('/', (req, res) => {
 router.get('/:id/edit', async (req, res) => {
   const _id = req.params.id
   try {
-    let categories = await Category.find().lean()
     const record = await Record.findById({ _id }).lean()
-    console.log()
+    let categories = await Category.find().lean()
     categories = categories.filter(items => items.name !== record.category)
     record.date = record.date.toISOString().slice(0, 10)
     return res.render('edit', { categories, record })
