@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
 const routes = require('./routes')
 
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT
 
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))

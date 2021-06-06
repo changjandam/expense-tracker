@@ -4,6 +4,9 @@ const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 
+let method = ''
+let month = ''
+
 router.get('/new', (req, res) => {
   Category.find()
     .lean()
@@ -67,8 +70,8 @@ router.delete('/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.get('/select/:method', async (req, res) => {
-  const method = req.params.method
+router.get('/category/:method', async (req, res) => {
+  method = req.params.method
   const userId = req.user._id
   try {
     const categories = await Category.find().lean()
@@ -80,6 +83,25 @@ router.get('/select/:method', async (req, res) => {
     }
 
     res.render('index', { categories, records, sum, method })
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+router.post('/month', async (req, res) => {
+  month = req.body.month
+  const start = new Date(month)
+  const end = new Date(Date.UTC(start.getFullYear(), start.getMonth() + 1))
+  try {
+    const categories = await Category.find().lean()
+    const records = await Record.find({ date: { $gte: start, $lt: end } }).lean()
+    let sum = 0
+    for (let i = 0; i < records.length; i++) {
+      records[i].class = categories.find(category => category.name === records[i].category).class
+      sum += records[i].amount
+    }
+
+    res.render('index', { categories, records, sum, month })
   } catch (err) {
     console.log(err)
   }

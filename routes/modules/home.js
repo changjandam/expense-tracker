@@ -13,7 +13,6 @@ router.get('/', async (req, res) => {
       records[i].class = categories.find(category => category.name === records[i].category).class
       sum += records[i].amount
     }
-
     res.render('index', { categories, records, sum })
   } catch (err) {
     console.log(err)
